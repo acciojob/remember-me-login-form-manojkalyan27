@@ -7,14 +7,11 @@ const existingUserContainer = document.getElementById("existing-user-container")
 function checkForExistingUser() {
 	const savedUsername = localStorage.getItem("username");
 	if (savedUsername) {
-		// Add button if not already present
-			// Add event listener for the existing user button
 			existingUserButton.addEventListener("click", () => {
 				alert(`Logged in as ${savedUsername}`);
 			});
 		}
 	}
-}
 
 // Handle form submission
 btn.addEventListener("click", () => {
