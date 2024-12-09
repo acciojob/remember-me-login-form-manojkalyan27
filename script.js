@@ -6,7 +6,9 @@ const existingUserContainer = document.getElementById("existing-user-container")
 // Check if saved details exist in localStorage and display "Login as existing user" button
 function checkForExistingUser() {
 	const savedUsername = localStorage.getItem("username");
+	const existing = document.getElementById("#existing");
 	if (savedUsername) {
+		existing.style.display = "block";		
 			existingUserButton.addEventListener("click", () => {
 				alert(`Logged in as ${savedUsername}`);
 			});
