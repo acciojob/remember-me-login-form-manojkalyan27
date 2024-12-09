@@ -1,1 +1,47 @@
-//your JS code here. If required.
+// Reference elements
+const btn = document.getElementById("submit");
+const checkBox = document.getElementById("checkbox");
+const existingUserContainer = document.getElementById("existing-user-container");
+
+// Check if saved details exist in localStorage and display "Login as existing user" button
+function checkForExistingUser() {
+	const savedUsername = localStorage.getItem("username");
+	if (savedUsername) {
+		// Add button if not already present
+		if (!document.getElementById("existing")) {
+			const existingUserButton = document.createElement("button");
+			existingUserButton.id = "existing";
+			existingUserButton.textContent = "Login as existing user";
+			existingUserContainer.appendChild(existingUserButton);
+
+			// Add event listener for the existing user button
+			existingUserButton.addEventListener("click", () => {
+				alert(`Logged in as ${savedUsername}`);
+			});
+		}
+	}
+}
+
+// Handle form submission
+btn.addEventListener("click", () => {
+	const username = document.getElementById("username").value;
+	const password = document.getElementById("password").value;
+
+	if (checkBox.checked) {
+		// Save username and password in localStorage
+		localStorage.setItem("username", username);
+		localStorage.setItem("password", password);
+	} else {
+		// Remove saved details
+		localStorage.removeItem("username");
+		localStorage.removeItem("password");
+	}
+
+	alert(`Logged in as ${username}`);
+
+	// Check for existing user after login
+	checkForExistingUser();
+});
+
+// Run check on page load
+checkForExistingUser();
